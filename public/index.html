@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- SEO & Metadata -->
+    <title>AuraQuote • Daily Wisdom & Quote Generator</title>
+    <meta name="description" content="Generate inspiring random quotes, listen to audio narration, download aesthetic quote cards, and save your favorites with history tracking." />
+    <meta name="keywords" content="quotes, quote generator, wisdom, motivation, daily quotes, quotes with history, inspiration" />
+    <meta name="author" content="AuraQuote" />
+    <meta name="theme-color" content="#6366f1" />
+
+    <!-- Open Graph / Social Media Meta -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="AuraQuote • Daily Wisdom & Quote Generator" />
+    <meta property="og:description" content="Generate inspiring random quotes, listen to audio narration, export aesthetic quote cards, and save your favorites." />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=1200&q=80" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Background Ambient Glow Orbs -->
+    <div class="ambient-glow orb-1" aria-hidden="true"></div>
+    <div class="ambient-glow orb-2" aria-hidden="true"></div>
+    <div class="ambient-glow orb-3" aria-hidden="true"></div>
+
+    <div class="app-layout">
+      <!-- Top Navigation Bar -->
+      <header class="navbar" role="banner">
+        <div class="nav-brand">
+          <div class="brand-icon-wrapper">
+            <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/>
+              <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c1 0 1.25.031 1.25 1.031V16c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="brand-title-row">
+              <span class="brand-title">AuraQuote</span>
+              <span class="badge-pro">PRO WEB</span>
+            </div>
+            <p class="brand-subtitle">Interactive Wisdom & Quote Journal</p>
+          </div>
+        </div>
+
+        <!-- Quick Controls -->
+        <div class="nav-actions">
+          <!-- Stats Pill -->
+          <div class="stats-badge" title="Quotes generated in this session">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            <span id="streak-count">0</span> Quotes Explored
+          </div>
+
+          <!-- Sound Toggle -->
+          <button id="sound-toggle" class="icon-button" type="button" title="Toggle Sound Effects (M)" aria-label="Toggle sound effects">
+            <svg class="icon-sound-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+            <svg class="icon-sound-off hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+          </button>
+
+          <!-- Shortcuts Dialog Button -->
+          <button id="shortcuts-btn" class="icon-button" type="button" title="Keyboard Shortcuts (?)" aria-label="Keyboard Shortcuts">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M6 8h.001M10 8h.001M14 8h.001M18 8h.001M8 12h.001M12 12h.001M16 12h.001M6 16h12"/></svg>
+          </button>
+
+          <!-- Theme Toggle Button -->
+          <button id="theme-toggle" class="icon-button theme-btn" type="button" title="Toggle Theme (T)" aria-label="Toggle color theme">
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <svg class="icon-sun hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <!-- Main Container -->
+      <main class="main-content" id="main-content">
+        <!-- Hero Header -->
+        <section class="hero-section">
+          <div class="eyebrow-chip">
+            <span class="pulse-dot"></span>
+            <span>Daily Dose of Inspiration</span>
+          </div>
+          <h1 class="main-heading">Elevate Your Mind With Words That Resonate</h1>
+          <p class="hero-lead">Instant wisdom curated from world-renowned thinkers, authors, and philosophers.</p>
+
+          <!-- Topic Filter Pills -->
+          <div class="category-filter-bar" role="tablist" aria-label="Quote Categories">
+            <button class="filter-pill active" data-category="all" type="button">✨ All Topics</button>
+            <button class="filter-pill" data-category="motivation" type="button">🚀 Motivation</button>
+            <button class="filter-pill" data-category="wisdom" type="button">🦉 Wisdom</button>
+            <button class="filter-pill" data-category="success" type="button">🏆 Success</button>
+            <button class="filter-pill" data-category="life" type="button">🌱 Life</button>
+            <button class="filter-pill" data-category="philosophy" type="button">🏛️ Philosophy</button>
+            <button class="filter-pill" data-category="tech" type="button">💻 Innovation</button>
+            <button class="filter-pill" data-category="humor" type="button">😄 Humor</button>
+          </div>
+        </section>
+
+        <!-- Main Interactive Quote Stage Card -->
+        <section class="quote-stage" aria-label="Featured Quote">
+          <div class="quote-card-wrapper" id="quote-card-wrapper">
+            <div class="quote-card glass-panel" id="quote-card">
+              <!-- Card Top Utilities -->
+              <div class="card-header-row">
+                <div class="category-tag-container">
+                  <span id="quote-category-badge" class="category-badge">✨ Inspiration</span>
+                  <span id="quote-length-badge" class="meta-badge">Insight</span>
+                </div>
+                <div class="card-actions-quick">
+                  <!-- Bookmark/Favorite Button -->
+                  <button id="favorite-btn" class="card-action-btn" type="button" title="Save to Favorites (F)" aria-label="Favorite quote">
+                    <svg class="heart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                  </button>
+                  <!-- Copy Button -->
+                  <button id="copy-btn" class="card-action-btn" type="button" title="Copy to Clipboard (C)" aria-label="Copy quote">
+                    <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                    <svg class="check-icon hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Quote Content -->
+              <div class="card-quote-body" aria-live="polite">
+                <div class="quote-mark open-mark">“</div>
+                <blockquote id="quote-text" class="quote-text">The only way to do great work is to love what you do.</blockquote>
+                <div class="quote-mark close-mark">”</div>
+              </div>
+
+              <!-- Author & Details Footer -->
+              <div class="card-footer-row">
+                <div class="author-profile">
+                  <div class="author-avatar" id="author-avatar">SJ</div>
+                  <div class="author-info">
+                    <p id="quote-author" class="author-name">Steve Jobs</p>
+                    <span id="quote-source-label" class="author-desc">Visionary & Co-founder of Apple</span>
+                  </div>
+                </div>
+                
+                <!-- Audio Narrator / TTS Button -->
+                <button id="speak-btn" class="tts-button" type="button" title="Read Aloud (R)" aria-label="Listen to quote">
+                  <svg class="tts-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                    <path class="wave-1" d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                    <path class="wave-2" d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+                  </svg>
+                  <span id="tts-label">Listen</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Main Interactive Action Buttons -->
+          <div class="quote-controls-toolbar">
+            <button id="new-quote" class="primary-action-btn glow-btn" type="button" aria-label="Generate new quote">
+              <svg class="dice-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 8h.01M8 8h.01M8 16h.01M16 16h.01M12 12h.01"/></svg>
+              <span>Get Fresh Quote</span>
+              <kbd class="btn-kbd">Space</kbd>
+            </button>
+
+            <!-- Social & Export Quick Tools -->
+            <div class="secondary-tools-group">
+              <!-- Download as Aesthetic Image Card -->
+              <button id="download-card-btn" class="secondary-action-btn" type="button" title="Download Quote Image Card (D)" aria-label="Download Image Card">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                <span>Save Card</span>
+              </button>
+
+              <!-- Share Dropdown Button -->
+              <div class="dropdown-wrapper">
+                <button id="share-menu-btn" class="secondary-action-btn" type="button" title="Share quote (S)" aria-label="Share options">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                  <span>Share</span>
+                </button>
+
+                <!-- Dropdown Menu -->
+                <div id="share-dropdown" class="share-dropdown glass-panel hidden" role="menu">
+                  <button id="share-twitter" class="dropdown-item" type="button" role="menuitem">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    <span>Post on X (Twitter)</span>
+                  </button>
+                  <button id="share-whatsapp" class="dropdown-item" type="button" role="menuitem">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                    <span>Share on WhatsApp</span>
+                  </button>
+                  <button id="share-linkedin" class="dropdown-item" type="button" role="menuitem">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                    <span>Share on LinkedIn</span>
+                  </button>
+                  <button id="share-native" class="dropdown-item" type="button" role="menuitem">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+                    <span>More Options...</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Status / Feedback Toast Message -->
+          <div id="status-message" class="status-badge" role="status" aria-live="polite">
+            <span class="status-icon">✓</span>
+            <span id="status-text">Saved to your history.</span>
+          </div>
+        </section>
+
+        <!-- Quotes Hub & Management Tabs -->
+        <section class="management-hub-section" aria-labelledby="hub-tabs-title">
+          <div class="hub-header">
+            <div class="hub-tabs-container" role="tablist" aria-label="Journal sections">
+              <button id="tab-history" class="hub-tab active" type="button" role="tab" aria-selected="true" aria-controls="view-history">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span>History Log</span>
+                <span id="history-badge-count" class="tab-counter">0</span>
+              </button>
+              <button id="tab-favorites" class="hub-tab" type="button" role="tab" aria-selected="false" aria-controls="view-favorites">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                <span>Favorites</span>
+                <span id="favorites-badge-count" class="tab-counter">0</span>
+              </button>
+              <button id="tab-add-custom" class="hub-tab" type="button" role="tab" aria-selected="false" aria-controls="view-add-custom">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                <span>Add Quote</span>
+              </button>
+            </div>
+
+            <!-- Global Actions (Search, Export, Clear) -->
+            <div class="hub-global-actions">
+              <!-- Live Search Input -->
+              <div class="search-box">
+                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input id="search-input" type="text" placeholder="Search by author or quote..." aria-label="Search quotes" />
+                <button id="clear-search-btn" class="clear-search hidden" type="button" aria-label="Clear search">×</button>
+              </div>
+
+              <!-- Export Data Button -->
+              <button id="export-btn" class="utility-button" type="button" title="Export Quotes (JSON/CSV)" aria-label="Export Quotes">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                <span>Export</span>
+              </button>
+
+              <!-- Clear History Button -->
+              <button id="clear-history-btn" class="utility-button danger-button" type="button" title="Clear all history" aria-label="Clear History">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                <span>Clear</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Views Panel -->
+          <div class="hub-view-wrapper">
+            <!-- View 1: History Tab -->
+            <div id="view-history" class="tab-panel active" role="tabpanel">
+              <ul id="history-list" class="quotes-grid-list">
+                <!-- Dynamically populated -->
+              </ul>
+            </div>
+
+            <!-- View 2: Favorites Tab -->
+            <div id="view-favorites" class="tab-panel hidden" role="tabpanel">
+              <ul id="favorites-list" class="quotes-grid-list">
+                <!-- Dynamically populated -->
+              </ul>
+            </div>
+
+            <!-- View 3: Add Custom Quote Tab -->
+            <div id="view-add-custom" class="tab-panel hidden" role="tabpanel">
+              <div class="custom-quote-card glass-panel">
+                <h3 class="custom-quote-title">Add Your Own Quote or Affirmation</h3>
+                <p class="custom-quote-desc">Preserve words that inspire you or wisdom you've penned yourself.</p>
+                <form id="custom-quote-form" class="custom-quote-form">
+                  <div class="form-group">
+                    <label for="custom-content-input">Quote / Wisdom Text</label>
+                    <textarea id="custom-content-input" rows="3" placeholder="Enter quote text here..." required></textarea>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group flex-1">
+                      <label for="custom-author-input">Author Name</label>
+                      <input id="custom-author-input" type="text" placeholder="e.g. Marcus Aurelius, Unknown, Yourself" required />
+                    </div>
+                    <div class="form-group flex-1">
+                      <label for="custom-category-select">Category</label>
+                      <select id="custom-category-select">
+                        <option value="wisdom">🦉 Wisdom</option>
+                        <option value="motivation">🚀 Motivation</option>
+                        <option value="success">🏆 Success</option>
+                        <option value="life">🌱 Life</option>
+                        <option value="philosophy">🏛️ Philosophy</option>
+                        <option value="tech">💻 Innovation</option>
+                        <option value="humor">😄 Humor</option>
+                        <option value="general">✨ General</option>
+                      </select>
+                    </div>
+                  </div>
+                  <button type="submit" class="primary-action-btn submit-custom-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    <span>Save to Journal</span>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- Footer -->
+      <footer class="app-footer" role="contentinfo">
+        <div class="footer-content">
+          <p class="footer-brand-line">
+            <strong>AuraQuote Web</strong> • Crafted for thinkers, creators & dreamers.
+          </p>
+          <div class="footer-meta">
+            <span class="offline-badge">⚡ 100% Offline & Web Ready</span>
+            <span class="dot-separator">•</span>
+            <span>Keyboard Shortcuts: <kbd>Space</kbd> New Quote • <kbd>C</kbd> Copy • <kbd>F</kbd> Favorite • <kbd>R</kbd> Read</span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Hidden Canvas for Quote Card Image Generation -->
+    <canvas id="quote-canvas" width="1200" height="630" style="display:none;"></canvas>
+
+    <!-- Modal: Keyboard Shortcuts -->
+    <div id="shortcuts-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modal-shortcuts-title">
+      <div class="modal-card glass-panel">
+        <div class="modal-header">
+          <h3 id="modal-shortcuts-title">⌨️ Keyboard Shortcuts</h3>
+          <button id="close-shortcuts-modal" class="modal-close-btn" type="button" aria-label="Close modal">×</button>
+        </div>
+        <div class="modal-body">
+          <div class="shortcuts-grid">
+            <div class="shortcut-item"><kbd>Space</kbd> or <kbd>N</kbd> <span>Generate new quote</span></div>
+            <div class="shortcut-item"><kbd>C</kbd> <span>Copy current quote</span></div>
+            <div class="shortcut-item"><kbd>F</kbd> <span>Add / remove favorite</span></div>
+            <div class="shortcut-item"><kbd>R</kbd> <span>Read quote aloud (Voice)</span></div>
+            <div class="shortcut-item"><kbd>D</kbd> <span>Download image card</span></div>
+            <div class="shortcut-item"><kbd>S</kbd> <span>Open share menu</span></div>
+            <div class="shortcut-item"><kbd>T</kbd> <span>Toggle dark / light theme</span></div>
+            <div class="shortcut-item"><kbd>M</kbd> <span>Toggle sound effects</span></div>
+            <div class="shortcut-item"><kbd>?</kbd> <span>Open this shortcuts help</span></div>
+            <div class="shortcut-item"><kbd>Esc</kbd> <span>Close active modal / dropdown</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal: Clear History Confirmation -->
+    <div id="confirm-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modal-confirm-title">
+      <div class="modal-card glass-panel">
+        <div class="modal-header">
+          <h3 id="modal-confirm-title">Clear History</h3>
+          <button id="close-confirm-modal" class="modal-close-btn" type="button" aria-label="Close modal">×</button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to clear your quote history? Your starred Favorites will be kept safe.</p>
+          <div class="modal-actions-row">
+            <button id="cancel-clear-btn" class="secondary-action-btn" type="button">Cancel</button>
+            <button id="confirm-clear-btn" class="danger-btn" type="button">Yes, Clear History</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating Toast Container -->
+    <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+  </body>
+</html>
